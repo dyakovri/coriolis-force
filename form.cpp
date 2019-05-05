@@ -98,7 +98,7 @@ form::~form()
 void form::on_start_clicked()
 {
 	if (!ui->stop->isEnabled()) {
-        ball = new Cannonball(ui->M->value(),ui->S->value(),ui->X->value(),ui->Y->value(),ui->Z->value(),ui->xV->value(),ui->yV->value(),ui->zV->value(),ui->p->value(),ui->w->value());
+        ball = new Cannonball(ui->M->value(),ui->S->value(),ui->X->value(),ui->Y->value(),ui->Z->value(),ui->xV->value(),ui->yV->value(),ui->zV->value(),ui->p->value(),ui->w->value(), ui->latitude->value());
 	}
 	setDisabledSplinBoxes(true);
 	timer->start(); // Запускаем таймер
@@ -139,6 +139,7 @@ void form::setDisabledSplinBoxes(bool value) {
     ui->Z->setDisabled(value);
     ui->p->setDisabled(value);
     ui->w->setDisabled(value);
+    ui->latitude->setDisabled(value);
 }
 void form::on_X_valueChanged(double arg1)
 {
