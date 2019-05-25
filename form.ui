@@ -142,12 +142,12 @@
             <rect>
              <x>10</x>
              <y>116</y>
-             <width>161</width>
+             <width>61</width>
              <height>16</height>
             </rect>
            </property>
            <property name="text">
-            <string>Координата x,y,z:</string>
+            <string>α (рад):</string>
            </property>
           </widget>
           <widget class="QDoubleSpinBox" name="M">
@@ -169,7 +169,7 @@
             <double>10000000.000000000000000</double>
            </property>
           </widget>
-          <widget class="QDoubleSpinBox" name="X">
+          <widget class="QDoubleSpinBox" name="alpha">
            <property name="geometry">
             <rect>
              <x>10</x>
@@ -182,13 +182,13 @@
             <number>1</number>
            </property>
            <property name="minimum">
-            <double>-10000000.000000000000000</double>
+            <double>0.000000000000000</double>
            </property>
            <property name="maximum">
             <double>10000000.000000000000000</double>
            </property>
            <property name="value">
-            <double>0.000000000000000</double>
+            <double>1.000000000000000</double>
            </property>
           </widget>
           <widget class="QLabel" name="label_9">
@@ -249,32 +249,10 @@
             <string>м²</string>
            </property>
           </widget>
-          <widget class="QDoubleSpinBox" name="Y">
+          <widget class="QDoubleSpinBox" name="beta">
            <property name="geometry">
             <rect>
-             <x>71</x>
-             <y>137</y>
-             <width>61</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="minimum">
-            <double>-10000000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>10000000.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>0.000000000000000</double>
-           </property>
-          </widget>
-          <widget class="QDoubleSpinBox" name="Z">
-           <property name="geometry">
-            <rect>
-             <x>132</x>
+             <x>114</x>
              <y>137</y>
              <width>61</width>
              <height>22</height>
@@ -290,10 +268,10 @@
             <double>10000000.000000000000000</double>
            </property>
            <property name="value">
-            <double>5.000000000000000</double>
+            <double>2.000000000000000</double>
            </property>
           </widget>
-          <widget class="QDoubleSpinBox" name="xV">
+          <widget class="QDoubleSpinBox" name="V">
            <property name="geometry">
             <rect>
              <x>9</x>
@@ -306,7 +284,7 @@
             <number>1</number>
            </property>
            <property name="minimum">
-            <double>-10000000.000000000000000</double>
+            <double>0.000000000000000</double>
            </property>
            <property name="maximum">
             <double>10000000.000000000000000</double>
@@ -325,51 +303,20 @@
             </rect>
            </property>
            <property name="text">
-            <string>Скорость x,y,z (м/с):</string>
+            <string>Скорость V (м/с):</string>
            </property>
           </widget>
-          <widget class="QDoubleSpinBox" name="zV">
+          <widget class="QLabel" name="label_14">
            <property name="geometry">
             <rect>
-             <x>131</x>
-             <y>181</y>
+             <x>114</x>
+             <y>116</y>
              <width>61</width>
-             <height>22</height>
+             <height>16</height>
             </rect>
            </property>
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="minimum">
-            <double>-10000000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>10000000.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>25.000000000000000</double>
-           </property>
-          </widget>
-          <widget class="QDoubleSpinBox" name="yV">
-           <property name="geometry">
-            <rect>
-             <x>70</x>
-             <y>181</y>
-             <width>61</width>
-             <height>22</height>
-            </rect>
-           </property>
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="minimum">
-            <double>-10000000.000000000000000</double>
-           </property>
-           <property name="maximum">
-            <double>10000000.000000000000000</double>
-           </property>
-           <property name="value">
-            <double>50.000000000000000</double>
+           <property name="text">
+            <string>β (рад):</string>
            </property>
           </widget>
          </widget>

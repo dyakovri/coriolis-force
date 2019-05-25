@@ -2,7 +2,7 @@
 
 Cannonball::Cannonball(double M, double S,
            double x0, double y0, double z0,
-           double Vx0, double Vy0, double Vz0,
+           double V0, double alpha, double beta,
            double p, double w, double latitude) : RungeKutta (6)
 {
     this->M = M;
@@ -15,19 +15,19 @@ Cannonball::Cannonball(double M, double S,
     this->x = x0;
     this->y = y0;
     this->z = z0;
-    this->Vx = Vx0;
-    this->Vy = Vy0;
-    this->Vz = Vz0;
+    this->Vx = fabs(V0)*cos(alpha)*sin(beta);
+    this->Vy = fabs(V0)*cos(alpha)*cos(beta);
+    this->Vz = fabs(V0)*sin(alpha);
 
     this->latitude = latitude;
 
     std::vector<double> Y0(6);
-    Y0[0] = x0;
-    Y0[1] = y0;
-    Y0[2] = z0;
-    Y0[3] = Vx0;
-    Y0[4] = Vy0;
-    Y0[5] = Vz0;
+    Y0[0] = this->x;
+    Y0[1] = this->y;
+    Y0[2] = this->z;
+    Y0[3] = this->Vx;
+    Y0[4] = this->Vy;
+    Y0[5] = this->Vz;
     SetInit(0, Y0);
 }
 
