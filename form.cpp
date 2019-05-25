@@ -46,7 +46,12 @@ form::form(QWidget *parent) :
 	ui->start->setDisabled(false);
     ui->stop->setDisabled(true);
 
-    ui->X->valueChanged(1);//обновит начальное положение ядра
+    coreXY->clear();
+    coreXY->append(0,0);
+    coreZXY->clear();
+    coreZXY->append(sqrt(pow(0,2)+pow(0,2)),0);
+    ui->graphicsView_1->update();
+    ui->graphicsView_2->update();
 }
 
 void form::updateGraph() {
@@ -98,7 +103,7 @@ form::~form()
 void form::on_start_clicked()
 {
 	if (!ui->stop->isEnabled()) {
-        ball = new Cannonball(ui->M->value(),ui->S->value(),ui->X->value(),ui->Y->value(),ui->Z->value(),ui->xV->value(),ui->yV->value(),ui->zV->value(),ui->p->value(),ui->w->value(), ui->latitude->value());
+        ball = new Cannonball(ui->M->value(),ui->S->value(),0,0,0,ui->V->value(),ui->alpha->value(),ui->beta->value(),ui->p->value(),ui->w->value(), ui->latitude->value());
 	}
 	setDisabledSplinBoxes(true);
 	timer->start(); // Запускаем таймер
@@ -122,7 +127,6 @@ void form::on_stop_clicked()
 		setDisabledSplinBoxes(false);
         seriesYX->clear();
         seriesZXY->clear();
-        ui->X->valueChanged(1);//обновит начальное положение ядра
 		ui->status->setText("Остановлено");
         delete ball;
 	}
@@ -131,33 +135,12 @@ void form::on_stop_clicked()
 void form::setDisabledSplinBoxes(bool value) {
     ui->S->setDisabled(value);
     ui->M->setDisabled(value);
-    ui->xV->setDisabled(value);
-    ui->yV->setDisabled(value);
-    ui->zV->setDisabled(value);
-    ui->X->setDisabled(value);
-    ui->Y->setDisabled(value);
-    ui->Z->setDisabled(value);
+    ui->V->setDisabled(value);
+    ui->alpha->setDisabled(value);
+    ui->beta->setDisabled(value);
     ui->p->setDisabled(value);
     ui->w->setDisabled(value);
-}
-void form::on_X_valueChanged(double arg1)
-{
-    coreXY->clear();
-    coreXY->append(ui->X->value(),ui->Y->value());
-    coreZXY->clear();
-    coreZXY->append(sqrt(pow(ui->Y->value(),2)+pow(ui->X->value(),2)),ui->Z->value());
-    ui->graphicsView_1->update();
-    ui->graphicsView_2->update();
-}
-
-void form::on_Y_valueChanged(double arg1)
-{
-    ui->X->valueChanged(1);
-}
-
-void form::on_Z_valueChanged(double arg1)
-{
-    ui->X->valueChanged(1);
+    ui->latitude->setDisabled(value);
 }
 
 void form::on_x_axis_editingFinished()
