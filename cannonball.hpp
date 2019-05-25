@@ -17,12 +17,13 @@ private:
     double Vx, Vy, Vz;  // Скорость ядра
     double p;           // Плотность среды
     double w;           // Угловая скорость вращения Земли
+    double latitude;    // Широта
 
 public:
     Cannonball(double M, double S,
                double x0, double y0, double z0,
                double Vx0, double Vy0, double Vz0,
-               double p, double w);
+               double p, double w, double latitude);
     ~Cannonball();
 
     virtual std::vector<double> F(double t, std::vector<double> &Y);

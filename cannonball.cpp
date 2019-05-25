@@ -3,7 +3,7 @@
 Cannonball::Cannonball(double M, double S,
            double x0, double y0, double z0,
            double Vx0, double Vy0, double Vz0,
-           double p, double w) : RungeKutta (6)
+           double p, double w, double latitude) : RungeKutta (6)
 {
     this->M = M;
     this->S = S;
@@ -40,18 +40,14 @@ std::vector<double> Cannonball::F(double time, std::vector<double> &coordinates)
     Vx = Y[3];
     Vy = Y[4];
     Vz = Y[5];
-
-    double Fk = 2*M*sqrt(pow(Vx,2)+pow(Vy,2)+pow(Vz,2))*w;
-    double sin_a = fabs(Vz/sqrt(pow(Vx,2)+pow(Vy,2)+pow(Vz,2)));
-    double cos_a = fabs(sqrt(pow(Vx,2)+pow(Vy,2))/sqrt(pow(Vx,2)+pow(Vy,2)+pow(Vz,2)));
-    double cos_b = fabs(Vx/sqrt(pow(Vx,2)+pow(Vy,2)));
+    double V = sqrt(Vx*Vx + Vy*Vy + Vz*Vz);
 
     FY[0] = Y[3];
     FY[1] = Y[4];
     FY[2] = Y[5];
-    FY[3] = - 0.5*C*p*S*std::pow(Vx,2);
-    FY[4] = - 0.5*C*p*S*std::pow(Vy,2) - Fk*cos_a*cos_b;
-    FY[5] = - M*g - 0.5*C*p*S*Vz*Vz - Fk*sin_a;
+    FY[3] = 2*M*w*Vy*sin(latitude) - 2*M*w*Vz*cos(latitude) - 0.5*C*p*S*V*Vx;
+    FY[4] =       - 2*M*w*Vx*sin(latitude) - 0.5*C*p*S*V*Vy;
+    FY[5] = - M*g + 2*M*w*Vx*cos(latitude) - 0.5*C*p*S*V*Vz;
     return FY;
 }
 
