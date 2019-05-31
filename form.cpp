@@ -13,6 +13,8 @@ form::form(QWidget *parent) :
 	timer = new QTimer(this); // Создаем объект класса QTimer и передаем адрес переменной
 	timer->setInterval(timerInterval); // Задаем интервал таймера
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateGraph())); // Подключаем сигнал таймера к нашему слоту
+    ui->graphicsView_1->setRenderHint(QPainter::Antialiasing);
+    ui->graphicsView_2->setRenderHint(QPainter::Antialiasing);
 
     seriesYX = new QLineSeries();
     seriesZXY = new QLineSeries();
@@ -56,6 +58,15 @@ form::form(QWidget *parent) :
 
 void form::updateGraph() {
     totalTime = ball->Step(timerInterval);
+
+    ui->x_axis->setValue(abs(ball->get_x()) + 5);
+    ui->x_axis->editingFinished();
+    ui->y_axis->setValue(abs(ball->get_y()) + 5);
+    ui->y_axis->editingFinished();
+    ui->z_axis->setValue(abs(ball->get_z()) + 5);
+    ui->z_axis->editingFinished();
+    ui->xy_axis->setValue(abs(ball->get_path()) + 5);
+    ui->xy_axis->editingFinished();
 
     if(ball->get_z()>=0){
         seriesYX->append(ball->get_x(), ball->get_y());
