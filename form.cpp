@@ -59,6 +59,9 @@ form::form(QWidget *parent) :
 void form::updateGraph() {
     totalTime = ball->Step(timerInterval);
 
+    QTextStream writeStreqam(fileOut);
+    writeStreqam << ball->get_x() <<";"<<ball->get_y()<<";"<<ball->get_z()<<"\n";
+
     ui->x_axis->setValue(abs(ball->get_x()) + 5);
     ui->x_axis->editingFinished();
     ui->y_axis->setValue(abs(ball->get_y()) + 5);
@@ -115,6 +118,7 @@ void form::on_start_clicked()
 {
     if (!ui->stop->isEnabled()) {
         ball = new Cannonball(ui->M->value(),ui->S->value(),0,0,0,ui->V->value(),ui->alpha->value(),ui->beta->value(),ui->p->value(),ui->w->value(), ui->latitude->value());
+        fileOut->open(QIODevice::WriteOnly | QIODevice::Text);
     }
     setDisabledSplinBoxes(true);
     timer->start(); // Запускаем таймер
@@ -139,6 +143,7 @@ void form::on_stop_clicked()
         seriesYX->clear();
         seriesZXY->clear();
         ui->status->setText("Остановлено");
+        fileOut->close();
         delete ball;
     }
 }

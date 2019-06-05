@@ -6,6 +6,7 @@
 #include <QtCharts>
 #include <QTimer>
 #include <QWidget>
+#include <QFile>
 
 namespace Ui {
     class form;
@@ -33,6 +34,7 @@ private:
     double timerInterval;
     void updateStatus();
     void setDisabledSplinBoxes(bool);
+    QFile *fileOut = new QFile("out.csv");
 
 private slots:
     void updateGraph();
