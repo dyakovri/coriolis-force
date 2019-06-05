@@ -5,14 +5,14 @@
 using namespace QtCharts;
 
 form::form(QWidget *parent) :
-	QWidget(parent),
-	ui(new Ui::form)
+    QWidget(parent),
+    ui(new Ui::form)
 {
-	ui->setupUi(this);
-	timerInterval = 10;
-	timer = new QTimer(this); // Создаем объект класса QTimer и передаем адрес переменной
-	timer->setInterval(timerInterval); // Задаем интервал таймера
-	connect(timer, SIGNAL(timeout()), this, SLOT(updateGraph())); // Подключаем сигнал таймера к нашему слоту
+    ui->setupUi(this);
+    timerInterval = 10;
+    timer = new QTimer(this); // Создаем объект класса QTimer и передаем адрес переменной
+    timer->setInterval(timerInterval); // Задаем интервал таймера
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateGraph())); // Подключаем сигнал таймера к нашему слоту
     ui->graphicsView_1->setRenderHint(QPainter::Antialiasing);
     ui->graphicsView_2->setRenderHint(QPainter::Antialiasing);
 
@@ -45,7 +45,7 @@ form::form(QWidget *parent) :
 
     ui->graphicsView_1->setChart(chart1);
     ui->graphicsView_2->setChart(chart2);
-	ui->start->setDisabled(false);
+    ui->start->setDisabled(false);
     ui->stop->setDisabled(true);
 
     coreXY->clear();
@@ -101,8 +101,8 @@ void form::updateStatus() {
 
 form::~form()
 {
-	delete ui;
-	delete timer;
+    delete ui;
+    delete timer;
     delete chart1;
     delete chart2;
     delete seriesYX;
@@ -113,34 +113,34 @@ form::~form()
 
 void form::on_start_clicked()
 {
-	if (!ui->stop->isEnabled()) {
+    if (!ui->stop->isEnabled()) {
         ball = new Cannonball(ui->M->value(),ui->S->value(),0,0,0,ui->V->value(),ui->alpha->value(),ui->beta->value(),ui->p->value(),ui->w->value(), ui->latitude->value());
-	}
-	setDisabledSplinBoxes(true);
-	timer->start(); // Запускаем таймер
-	ui->start->setDisabled(true);
-	ui->stop->setText("Пауза");
-	ui->stop->setDisabled(false);
+    }
+    setDisabledSplinBoxes(true);
+    timer->start(); // Запускаем таймер
+    ui->start->setDisabled(true);
+    ui->stop->setText("Пауза");
+    ui->stop->setDisabled(false);
 }
 
 void form::on_stop_clicked()
 {
-	if (timer->isActive()) {
-		timer->stop();
-		ui->start->setDisabled(false);
-		ui->stop->setText("Стоп");
-	}
-	else {
-		totalTime = 0;
-		ui->stop->setDisabled(true);
+    if (timer->isActive()) {
+        timer->stop();
         ui->start->setDisabled(false);
-		ui->stop->setText("Пауза");
-		setDisabledSplinBoxes(false);
+        ui->stop->setText("Стоп");
+    }
+    else {
+        totalTime = 0;
+        ui->stop->setDisabled(true);
+        ui->start->setDisabled(false);
+        ui->stop->setText("Пауза");
+        setDisabledSplinBoxes(false);
         seriesYX->clear();
         seriesZXY->clear();
-		ui->status->setText("Остановлено");
+        ui->status->setText("Остановлено");
         delete ball;
-	}
+    }
 }
 
 void form::setDisabledSplinBoxes(bool value) {

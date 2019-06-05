@@ -15,11 +15,11 @@ Cannonball::Cannonball(double M, double S,
     this->x = x0;
     this->y = y0;
     this->z = z0;
-    this->Vx = fabs(V0)*cos(alpha)*sin(beta);
-    this->Vy = fabs(V0)*cos(alpha)*cos(beta);
-    this->Vz = fabs(V0)*sin(alpha);
+    this->Vx = fabs(V0)*cos(alpha*(M_PI/180))*sin(beta*(M_PI/180));
+    this->Vy = fabs(V0)*cos(alpha*(M_PI/180))*cos(beta*(M_PI/180));
+    this->Vz = fabs(V0)*sin(alpha*(M_PI/180));
 
-    this->latitude = latitude;
+    this->latitude = latitude*(M_PI/180);
 
     std::vector<double> Y0(6);
     Y0[0] = this->x;
@@ -47,9 +47,9 @@ std::vector<double> Cannonball::F(double time, std::vector<double> &coordinates)
     FY[0] = Y[3];
     FY[1] = Y[4];
     FY[2] = Y[5];
-    FY[3] = 2*M*w*Vy*sin(latitude) - 2*M*w*Vz*cos(latitude) - 0.5*C*p*S*V*Vx;
-    FY[4] =       - 2*M*w*Vx*sin(latitude) - 0.5*C*p*S*V*Vy;
-    FY[5] = - M*g + 2*M*w*Vx*cos(latitude) - 0.5*C*p*S*V*Vz;
+    FY[3] = (2*M*w*Vy*sin(latitude) - 2*M*w*Vz*cos(latitude) - 0.5*C*p*S*V*Vx)/M;
+    FY[4] =  (     - 2*M*w*Vx*sin(latitude) - 0.5*C*p*S*V*Vy)/M;
+    FY[5] = (- M*g + 2*M*w*Vx*cos(latitude) - 0.5*C*p*S*V*Vz)/M;
     return FY;
 }
 

@@ -147,7 +147,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>α (рад):</string>
+            <string>α (град):</string>
            </property>
           </widget>
           <widget class="QDoubleSpinBox" name="M">
@@ -214,13 +214,13 @@
             </rect>
            </property>
            <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="minimum">
-            <double>1.000000000000000</double>
+            <number>7</number>
            </property>
            <property name="maximum">
             <double>10000000.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.000001000000000</double>
            </property>
           </widget>
           <widget class="QLabel" name="label_11">
@@ -316,7 +316,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>β (рад):</string>
+            <string>β (град):</string>
            </property>
           </widget>
          </widget>
@@ -440,7 +440,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>м/с</string>
+            <string>1/с</string>
            </property>
           </widget>
           <widget class="QDoubleSpinBox" name="latitude">
@@ -478,7 +478,7 @@
             </rect>
            </property>
            <property name="text">
-            <string>градусы</string>
+            <string>град</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_13">

@@ -3,10 +3,10 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication a(argc, argv);
-	form w;
+    QApplication a(argc, argv);
+    form w;
     w.setWindowTitle("Coriolis-force");
-	w.show();
+    w.show();
 
-	return a.exec();
+    return a.exec();
 }
